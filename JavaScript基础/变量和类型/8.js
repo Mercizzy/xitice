@@ -13,7 +13,8 @@ let a = 1,
     e = true,
     f = [],
     g = {},
-    h = Symbol()
+    h = Symbol(),
+    fn = function() {}
 
 console.log('----------typeof-----------');
 console.log(typeof a);
@@ -24,6 +25,7 @@ console.log(typeof e);
 console.log(typeof f);
 console.log(typeof g);
 console.log(typeof h);
+console.log(typeof fn);
 console.log('----------typeof-----------');
 
 
@@ -36,6 +38,7 @@ console.log(e instanceof Boolean);
 console.log(f instanceof Object);
 console.log(g instanceof Object);
 console.log(h instanceof Symbol);
+console.log(fn instanceof Function);
 console.log('----------instanceof-----------');
 
 console.log('----------Object.prototype.toString.call-----------');
