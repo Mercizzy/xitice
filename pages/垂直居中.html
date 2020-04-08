@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直居中的四种方法</title>
+  <style>
+    .normal {
+      width: 100px;
+      height: 100px;
+      background-color: aqua;
+      margin-bottom: 10px;
+    }
+    /* 第一种，转化为table */
+    .parent {
+      display: table;
+    }
+    .child {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    /* 第二种，使用flex布局 */
+    .parent2 {
+      display: flex;
+      align-items: center;
+    }
+
+    /* 第三种，绝对定位 */
+    .parent3 {
+      position: relative;
+    }
+    .child3 {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* 第四种 inline-block*/
+    .parent4::after {
+      display: inline-block;
+      content: '';
+      width: 0px;
+      height: 100%;
+      vertical-align: middle;
+    }
+    .child4 {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="parent normal">
+    <div class="child">
+      content
+    </div>
+  </div>
+  <div class="parent2 normal">
+    <div class="child2">
+      content
+    </div>
+  </div>
+  <div class="parent3 normal">
+    <div class="child3">
+      content
+    </div>
+  </div>
+  <div class="parent4 normal">
+    <div class="child4">
+      content
+    </div>
+  </div>
+</body>
+</html>
