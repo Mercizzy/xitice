@@ -122,8 +122,10 @@ console.log(+undefined);  //NAN
   ```
 2. 关系运算
 3. 条件判断 if()
+
 **转换原则**
 1. toString
+
 原类型 | 转换
 :----: | :----:
 undefined	| "undefined"
@@ -136,6 +138,7 @@ string | 无需转换
 {} | "[object Object]" 
 Symbol() | "Symbol()"
 2. toInt
+
 原类型 | 转换 
 :----: | :----: 
 undefined | NaN 
@@ -148,6 +151,7 @@ string | 由字符串解析为数字。例如，"324"被转换为324
 {} | NaN 
 Symbol | 报错 
 3. toBoolean
+
 原类型 | 转换
 :----: | :----:
 undefined | false
