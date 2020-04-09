@@ -125,7 +125,7 @@ console.log(+undefined);  //NAN
 **转换原则**
 1. toString
 原类型 | 转换
-:-: | :-:
+:----: | :----:
 undefined	| "undefined"
 null | "null"
 boolean | "true" 或者 "false"
@@ -137,7 +137,7 @@ string | 无需转换
 Symbol() | "Symbol()"
 2. toInt
 原类型 | 转换 
-:-: | :-: 
+:----: | :----: 
 undefined | NaN 
 null | +0 
 boolean | true被转换为1,false转换为+0 
@@ -147,10 +147,9 @@ string | 由字符串解析为数字。例如，"324"被转换为324
 [5] | 5 
 {} | NaN 
 Symbol | 报错 
----
 3. toBoolean
 原类型 | 转换
-:-: | :-:
+:----: | :----:
 undefined | false
 null | false 
 boolean | 无需转换 
@@ -159,7 +158,7 @@ string | ''为false,其他为true
 [] | true
 {} | true
 Symbol | true
----
+
 ### 10.出现小数精度丢失的原因,JavaScript可以存储的最大数字、最大安全数字,JavaScript处理大数字的方法、避免精度丢失的方法
 1. 出现小数精度丢失的原因
     出现小数精度丢计算机的二进制实现和位数限制有些数无法有限表示。
