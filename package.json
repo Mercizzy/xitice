@@ -1,0 +1,24 @@
+{
+  "name": "xitice",
+  "version": "1.0.0",
+  "description": "记录一些刷题时遇见的问题",
+  "main": "index.js",
+  "dependencies": {
+    "markdown-toc": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mercizzy/xitice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mercizzy/xitice/issues"
+  },
+  "homepage": "https://github.com/Mercizzy/xitice#readme"
+}
