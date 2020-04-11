@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 理解原型设计模式以及JavaScript中的原型规则
+     * 原型对象：我们创建的每一个函数（JavaScript中函数也是一个对象）都有一个原型属性 prototype，
+     * 原型属性实质上是一个指针，它指向一个对象，这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法
+     * （通俗的说：就是这个特定类型的所有实例都可以共享原型对象包含的属性和方法）。
+     * 
+     * 实例无法修改原型对象中的值
+     * 由于在原型中查找值的过程是一次搜索，因此在对原型对象做的任何修改都会立即从实例上反映出来，即使是先创建实例后修改原型也如此。
+     */
+
+    function Person() {
+      this.name1 = 'name1'
+    }
+    //原型对象赋值的两种方法
+    //1.添加属性
+    // Person.prototype.name2 = 'name2'
+    // Person.prototype.sayName = function() {
+    //   console.log(this.name2);
+    // }
+    //2.重写原型对象的原型属性
+    // Person.prototype = {
+    //   constructor: Person,  //原型对象默认的构造函数属性，包含指向prototype属性的指针，重写prototype时需要手动赋值，否则prototype便会默认指向object
+    //   name: 'asas'
+    // }
+
+    let p1 = new Person()
+    let p2 = new Person()
+
+    // p2.name1 = 'name1-1'
+    // p2.name2 = 'name2-2'
+    // console.log(Person.prototype.constructor == Person);  //true
+    
+    // console.log(p1.__proto__.constructor == Person);  //true
+    console.log(p1.name2);
+    // Person.prototype.name2 = 'name2-3'
+    //每一次查询都会是一次搜索，即使在修改前定义的实例也会发生改变
+    // console.log(p1.name2);
+    //重写prototype会导致原型与实例的关系切断
+    // Person.prototype = {
+    //   // constructor: Person,
+    //   name2: 'reWrite',
+    //   sayName: function() {
+    //     console.log(this.name2);
+        
+    //   }
+    // }
+    // p1.sayName()
+    
+
+  </script>
+</body>
+</html>
