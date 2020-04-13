@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 实现继承的几种方式以及他们的优缺点
+    */
+
+    function Animal(name) {
+      //属性
+      this.name = name || 'Animal'
+      //实例方法
+      this.sleep = function() {
+        console.log(`${this.name}正在睡觉`);
+      }
+    }
+    //原型方法
+    Animal.prototype.eat = function(food) {
+      console.log(`${this.name}正在吃${food}`);
+    }
+    Animal.prototype.testArr = []
+
+    /**
+     * 1.原型链继承
+     * 缺点：
+     *  无法实现多继承
+     *  来自原型对象的引用属性是所有实例共享的
+     *  创建子类实例时，无法向父类构造函数传参
+    */
+    /* function Cat() {
+      //实例中添加的属性，方法依旧生效
+      this.name = 'cat'
+    }
+    Cat.prototype.name = 'cat2' //失效，在原型增加属性、方法时，必须在继承之后
+    Cat.prototype = new Animal()
+    
+
+    //TestCode
+    let cat = new Cat()
+    console.log(cat.name)
+    cat.eat('fish')
+    cat.sleep()
+    console.log(cat instanceof Cat);
+    console.log(cat instanceof Animal);
+    cat.testArr.push('cat')
+    console.log(cat.testArr);
+
+    function Dog() {
+
+    }
+    Dog.prototype = new Animal()
+
+    let dog = new Dog()
+    console.log(dog.testArr); */
+
+    /**
+     * 2.构造继承
+     * 缺点：
+     *  实例并不是父类的实例，只是子类的实例
+     *  只能继承父类的实例属性和方法，不能继承原型属性/方法
+     *  无法实现函数复用，每个子类都有父类实例函数的副本，影响性能
+    */
+    
+    /* function Cat(name) {
+      Animal.call(this, 'cat')
+    }
+
+    //TestCode
+    let cat = new Cat()
+    console.log(cat.name);
+    cat.sleep()
+    console.log(cat.eat);
+    console.log(cat.testArr);
+    console.log(cat instanceof Cat);
+    console.log(cat instanceof Animal); */
+    
+    /**
+     * 3.组合继承
+     * 特点：
+     *  弥补了方式2的缺陷，可以继承实例属性/方法，也可以继承原型属性/方法
+     *  既是子类的实例，也是父类的实例
+     *  不存在引用属性共享问题
+     *  可传参
+     *  函数可复用
+     * 缺点：
+     *  调用了两次父类构造函数，生成了两份实例
+    */
+
+    /* function Cat(name) {
+      Animal.call(this)
+      this.name = name || 'cat'
+    }
+    Cat.prototype = new Animal()
+    Cat.prototype.constructor = Cat //修复构造函数指向
+
+    //TestCode
+    let cat = new Cat('cat2')
+    console.log(cat.name);
+    cat.sleep()
+    cat.eat('fish')
+    console.log(cat instanceof Cat);
+    console.log(cat instanceof Animal);
+     */
+
+    /**
+     * 4.拷贝继承
+     * 特点：
+     *  支持多继承
+     * 缺点：
+     *  效率较低，内存占用高（因为要拷贝父类的属性）
+     *  无法获取父类不可枚举的方法（不可枚举方法，不能使用for in 访问到）
+    */
+
+    /* function Cat(name){
+      var animal = new Animal();
+      for(var p in animal){
+        Cat.prototype[p] = animal[p];
+      }
+      Cat.prototype.name = name || 'cat';
+    }
+
+    // Test Code
+    var cat = new Cat();
+    console.log(cat.name);
+    console.log(cat.sleep());
+    console.log(cat instanceof Animal); // false
+    console.log(cat instanceof Cat); // true
+     */
+
+    /**
+     * 5.寄生继承
+     * 缺点:只能继承原型上的属性、方法，不能实现函数的复用
+    */
+
+    /* function Cat(name) {
+      this.name = name || 'cat'
+      let clone = Object()
+      clone.prototype = Animal.prototype
+
+      return clone
+    }
+
+    // Test Code
+    var cat = new Cat();
+    console.log(cat.name);
+    console.log(cat.sleep);
+    console.log(cat instanceof Animal);
+    console.log(cat instanceof Cat); */
+    
+
+    /**
+     * 6.寄生组合继承
+    */
+
+    /* function Cat(name) {
+      Animal.call(this)
+      this.name = name || 'cat'
+    }
+
+    let Clone = new Function()
+    Clone.prototype = Animal.prototype
+    Cat.prototype = new Clone()
+    Cat.prototype.constructor = Cat
+
+    //TestCode
+    var cat = new Cat();
+    console.log(cat.name);
+    cat.sleep()
+    cat.eat('fish')
+    console.log(cat instanceof Animal); // true
+    console.log(cat instanceof Cat); //true */
+
+  </script>
+</body>
+</html>
