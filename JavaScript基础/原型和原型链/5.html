@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 可以描述new一个对象的详细过程，手动实现一个new操作符
+     *  1.生成一个空对象
+     *  2.链接到原型(将所创建对象的__proto__属性值设置为构造函数的prototype属性)
+     *  3.绑定this（构造函数中的this指向新对象并且调用构造函数）
+     *  4.返回新对象
+    */
+
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+      this.show = function() {
+        console.log(`姓名：${this.name}, 年龄：${this.age}`);
+      }
+    }
+    Person.prototype.grow = function() {
+      console.log(`${this.name}长大了，现在的年龄是${this.age + 1}岁`);
+    }
+
+    let p1 = new Person('张三', 15)
+    console.log(p1);
+    
+
+    function myNew() {
+      let obj = Object()
+      //获得构造函数
+      // console.log(Object.prototype.toString.call(arguments));
+      // Array.from(arguments).shift()
+      let Con = [].shift.call(arguments);
+      // console.log(arguments);
+      
+      obj.__proto__ = Con.prototype
+
+      //绑定this
+      let result = Con.apply(obj,arguments);
+      
+      //确保new出来的是一个对象
+      return typeof result === "object" ? result : obj
+      
+    }
+
+    let p2 = myNew(Person, '李四', 17)
+    console.log(p2);
+    console.log(p2 instanceof Person);
+    
+
+  </script>
+</body>
+</html>
