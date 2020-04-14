@@ -36,7 +36,7 @@
     //手动实现一个instanceof
     function myInstanceOf(child, father) {
       //第一步，验证是否为引用类型
-      if(typeof child != "object" || child == null) {
+      if(typeof child != "object" || child == null || typeof child != 'function') {
         return false
       }
 
