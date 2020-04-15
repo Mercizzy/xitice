@@ -44,6 +44,9 @@
       let result = Con.apply(obj,arguments);
       
       //确保new出来的是一个对象
+      // 首先，在这个demo中call的返回值确实是undefined，因为绑定函数确实没有任何返回，只有当绑定函数有return的时候，才会有返回值。
+      // 其次，为什么要判断返回值的类型？这是因为new一个实例的时候，如果没有return，就会根据构造函数内部this绑定的值生成对象，如果有返回值，就会根据返回值生成对象，为了模拟这一效果，就需要判断apply后是否有返回值。
+
       return typeof result === "object" ? result : obj
       
     }

@@ -36,18 +36,18 @@
     //手动实现一个instanceof
     function myInstanceOf(child, father) {
       //第一步，验证是否为引用类型
-      if(typeof child != "object" || child == null || typeof child != 'function') {
+      if((typeof child != "object" && typeof child != 'function') || child === null)  {
         return false
       }
-
-      let leftVaule = child.__proto__
-      let rightVaule = father.prototype
+      let leftValue = Object.getPrototypeOf(child)
+      let rightValue = father.prototype
       while(true) {
-        if(leftVaule == null) return false
-        if(left === rightVaule) return true
-        leftVaule = leftVaule.__proto__
+        if(leftValue == null) return false
+        if(leftValue === rightValue) return true
+        leftValue = Object.getPrototypeOf(leftValue)
       }
     }
+
   </script>
 </body>
 

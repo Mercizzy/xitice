@@ -12,6 +12,7 @@
     */
 
     function Animal(name) {
+      console.log('我是父类构造函数');
       //属性
       this.name = name || 'Animal'
       //实例方法
@@ -32,16 +33,16 @@
      *  来自原型对象的引用属性是所有实例共享的
      *  创建子类实例时，无法向父类构造函数传参
     */
-    /* function Cat() {
+    /* function Cat(name) {
       //实例中添加的属性，方法依旧生效
-      this.name = 'cat'
+      // this.name = name || 'cat'
     }
     Cat.prototype.name = 'cat2' //失效，在原型增加属性、方法时，必须在继承之后
-    Cat.prototype = new Animal()
+    Cat.prototype = new Animal('haha')
     
 
     //TestCode
-    let cat = new Cat()
+    let cat = new Cat('232332')
     console.log(cat.name)
     cat.eat('fish')
     cat.sleep()
@@ -56,8 +57,8 @@
     Dog.prototype = new Animal()
 
     let dog = new Dog()
-    console.log(dog.testArr); */
-
+    console.log(dog.testArr);
+ */
     /**
      * 2.构造继承
      * 缺点：
@@ -104,8 +105,8 @@
     cat.sleep()
     cat.eat('fish')
     console.log(cat instanceof Cat);
-    console.log(cat instanceof Animal);
-     */
+    console.log(cat instanceof Animal); */
+    
 
     /**
      * 4.拷贝继承
@@ -174,6 +175,9 @@
     cat.eat('fish')
     console.log(cat instanceof Animal); // true
     console.log(cat instanceof Cat); //true */
+
+    function A() {}
+    
 
   </script>
 </body>
