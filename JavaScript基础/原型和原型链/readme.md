@@ -357,3 +357,47 @@ class A {
 
 #### class的继承
 
+```js
+class A {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+  }
+  show() {
+    return `x: ${this.x}, y: ${this.y}`
+  }
+}
+```
+
+##### 6.1 使用extends继承
+
+```js
+class B extends A {
+  constructor(x, y, z) {
+    super(x, y)// 调用父类的constructor(x, y)
+		this.z = z
+  }
+  show() {
+    return `y: ${this.y}, ${super.show()}`
+  }
+}
+//子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类自己的this对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，加上子类自己的实例属性和方法。如果不调用super方法，子类就得不到this对象。
+```
+
+##### 6.2 `Object.getPrototypeOf()`
+
+```js
+//Object.getPrototypeOf方法可以用来从子类上获取父类。因此，可以使用这个方法判断，一个类是否继承了另一个类。
+Object.getPrototypeOf(B) === A
+```
+
+##### 6.3 类的 `prototype` 属性和`__proto__`属性 
+
+```js
+//大多数浏览器的 ES5 实现之中，每一个对象都有__proto__属性，指向对应的构造函数的prototype属性。Class 作为构造函数的语法糖，同时有prototype属性和__proto__属性，因此同时存在两条继承链。
+
+//（1）子类的__proto__属性，表示构造函数的继承，总是指向父类。
+B.__proto__ === A // true
+//（2）子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。
+B.prototype.__proto__ === A.prototype // true
+```
