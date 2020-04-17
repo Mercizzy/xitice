@@ -1,0 +1,99 @@
+<html>
+  <script>
+    /**
+     * 理解堆栈溢出和内存泄漏的原理，如何防止
+     */
+
+    /**
+     * 我们知道JS中的数据存储分为栈和堆，程序代码运行都需要一定的计算存储空间，就是栈了，
+     * 栈遵循先进后出的原则，所以程序从栈底开始运行计算，程序内部函数的调用以及返回会不停的执行进栈和出栈的操作，栈内被所占的资源也在不断的对应变化，
+     * 但是一旦你的调用即进栈操作过多，返回即出栈不够，这时候就会导致栈满了，再进栈的就会溢出来。
+     * 栈溢出一般是递归导致
+     */
+
+    //斐波那契数列
+    /* function Fibonacci(n) {
+      if( n <= 1) return 1
+      return Fibonacci(n-1) + Fibonacci(n-2)
+    }
+    console.log(Fibonacci(100));  //超时 */
+
+    //尾递归
+    /* function Fibonacci(n, ac1 = 1, ac2 = 1) {
+      if( n<=1 ) return ac2
+      return Fibonacci(n, ac2, ac1+ac2)
+    }
+    Fibonacci(100) */
+
+    //蹦床函数
+    /* function trampoline(f) {
+      while(f && f instanceof Function) {
+        f = f()
+      }
+      return f
+    }
+    function Fibonacci(n, ac1 = 1, ac2 = 1) {
+      if( n<=1 ) return ac2
+      return Fibonacci.bind(null, n-1, ac2, ac1+ac2)
+    }
+    console.log(trampoline(Fibonacci(100, 1, 1))); */
+
+    /* function sum(x, y) {
+      if (y > 0) {
+        return sum.bind(null, x + 1, y - 1);
+      } else {
+        return x;
+      }
+    }
+
+    trampoline(sum(1, 10)) */
+
+    function tco(f) {
+      var value;
+      var active = false;
+      var accumulated = [];
+      
+      return function accumulator() {
+        accumulated.push(arguments);
+        if (!active) {
+          active = true;
+          while (accumulated.length) {
+            value = f.apply(this, accumulated.shift());
+          }
+          active = false;
+          return value;
+        }
+      };
+    }
+    let sum = tco(function(x, y) {
+      if (y > 0) {
+        return sum(x + 1, y - 1);
+      } else {
+        return x;
+      }
+    })
+
+    // console.log(sum(1, 1));
+
+
+    /**
+     * 内存泄漏是指程序被分配的栈内有一块内存既不能使用，也不能被回收
+     * 1.函数内未使用声明变量关键字的变量
+     * 2.未销毁的定时器
+     * 3.dom清空或删除时，事件未清除导致的内存泄漏
+     * 4.闭包的循环引用
+     * 
+     * 解决方法
+     * 1.标记清除
+     * 2.引用计数
+     * 怎样避免内存泄露：
+
+      1）减少不必要的全局变量，或者生命周期较长的对象，及时对无用的数据进行垃圾回收；
+
+      2）注意程序逻辑，避免“死循环”之类的 ；
+
+      3）避免创建过多的对象 原则：不用了的东西要及时归还。
+    */
+
+  </script>
+</html>

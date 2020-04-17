@@ -11,6 +11,15 @@
  */
 
 /**
+ * js 的闭包特性之所以成立，
+ * 一是它允许函数嵌套，
+ * 二是变量拥有多级作用域（以函数级别作用域为主），
+ * 第三就是函数在 js 语言中是一等公民，可以当做值来使用。
+ * 在 example2() 的例子中，那些持久化方式都是直接将 inner 函数作为值来使用，包括绑定到对象属性上、作为其他函数的参数等，而不是在 inner 函数后面用括号执行它。
+ * https://zhuanlan.zhihu.com/p/26899840
+ */
+
+/**
  * Javascript的垃圾回收机制
  *  在Javascript中，如果一个对象不再被引用，那么这个对象就会被GC回收。
  *  如果两个对象互相引用，而不再被第3者所引用，那么这两个互相引用的对象也会被回收。
@@ -33,7 +42,7 @@ c()
 c() */
 
 //为不能传递参数的方法传递参数，如延时，监听
-function se(a) {
+/* function se(a) {
   return function() {
     a++
     console.log(a)
@@ -43,6 +52,51 @@ function se(a) {
   }
 }
 var seW = se(0)
-let t1 = setInterval(seW, 1000)
+let t1 = setInterval(seW, 1000) */
 
 //代码模块化
+/* let testMoudle = (function() {
+  let arr = ['张三', '李四', '王五']
+  function get() {
+    return arr
+  }
+  function set(index, value) {
+    arr[index] = value
+  }
+  function add(value) {
+    arr.push(value)
+  }
+  function remove(index) {
+    arr.splice(index, 1)
+  }
+
+  return {
+    get: get,
+    set: set,
+    add: add,
+    remove: remove
+  }
+})()
+
+console.log(testMoudle.get());
+testMoudle.set(2, '王五五')
+console.log(testMoudle.get());
+testMoudle.add('Merci')
+console.log(testMoudle.get());
+testMoudle.remove(1)
+console.log(testMoudle.get()); */
+
+/* for(var i=0; i<5; i++) {
+  console.log(i);
+} */
+/* for(var i=0; i<5; i++) {
+  setTimeout(()=> {
+    console.log(i);
+  }, 1000)
+} */
+/* for(var i=0; i<5; i++) {
+  let obj = {
+    a: i
+  }
+  console.log(obj)
+} */
