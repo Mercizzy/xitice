@@ -28,7 +28,7 @@ for(let i=0; i<len; i++) {
 } */
 
 //方法2 async await
-/* let p = new Promise((res, rej) =>{
+let p = new Promise((res, rej) =>{
   setTimeout(()=> {
     console.log('执行异步操作');
     res()
@@ -43,7 +43,7 @@ let asyncP = async function() {
   }
   console.log('All Promise finished');
 }
-asyncP() */
+asyncP()
 
 //方法3.使用promise.all
 /* let arr = []

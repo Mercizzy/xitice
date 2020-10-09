@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <audio id="audio" autoplay src="../images/newMsg.mp3"></audio>
+
+  <script>
+    window.onload = function() {
+      let audio = document.getElementById('audio')
+      audio.oncanplaythrough = function() {
+        audio.play()
+      }
+    }
+
+  </script>
+</body>
+</html>
